@@ -3,7 +3,6 @@ public class OOPSDemo {
 
         // Inheritance
         Animal blackCat=new Cat();
-        blackCat.eat();
         blackCat.sleep();
 
         //polymorphism

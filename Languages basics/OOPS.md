@@ -187,4 +187,79 @@ public class Main {
 }
 ```
 
-These concepts form the backbone of OOP in Java, enabling developers to create flexible, reusable, and maintainable code.
+### Session 2: Abstract Classes vs. Interfaces and Exception Handling
+
+#### Day 1: Abstract Classes vs. Interfaces
+
+**Abstract Classes**
+
+1. **Definition**: Abstract classes are classes that cannot be instantiated and can contain abstract methods (methods without a body) and concrete methods (methods with a body).
+
+2. **Example and Use Case**:
+    ```java
+    abstract class Animal {
+        abstract void sound();  // Abstract method
+
+        void sleep() {  // Concrete method
+            System.out.println("Sleeping");
+        }
+    }
+
+    class Dog extends Animal {
+        @Override
+        void sound() {
+            System.out.println("Dog barks");
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) {
+            Dog dog = new Dog();
+            dog.sound();  // Output: Dog barks
+            dog.sleep();  // Output: Sleeping
+        }
+    }
+    ```
+    - **Use Case**: Use abstract classes when you have a base class that should not be instantiated on its own but can provide some default behavior or state that other classes can inherit and override.
+
+**Interfaces**
+
+1. **Definition**: Interfaces are a way to define methods that must be implemented by classes. Interfaces cannot contain any concrete methods (until Java 8, which introduced default and static methods).
+
+2. **Example and Use Case**:
+    ```java
+    interface Vehicle {
+        void drive();  // Abstract method
+    }
+
+    class Car implements Vehicle {
+        @Override
+        public void drive() {
+            System.out.println("Car drives");
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) {
+            Car car = new Car();
+            car.drive();  // Output: Car drives
+        }
+    }
+    ```
+    - **Use Case**: Use interfaces to define a contract that multiple classes can implement, ensuring they provide specific behavior. Interfaces are useful for achieving multiple inheritance in Java.
+
+**Comparison**:
+
+- **Abstract Classes**:
+    - Can have both abstract and concrete methods.
+    - Can have member variables.
+    - Can provide a base class implementation.
+    - Can have constructors.
+    - Supports single inheritance.
+
+- **Interfaces**:
+    - All methods are abstract by default (until Java 8).
+    - Cannot have member variables (only constants).
+    - Cannot provide a base class implementation.
+    - No constructors.
+    - Supports multiple inheritance.

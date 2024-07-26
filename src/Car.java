@@ -6,6 +6,10 @@ public class Car {
     private int noOfGears;
     private Tyre tyre;
 
+    public Car() {
+
+    }
+
     public Tyre getTyre() {
         return tyre;
     }

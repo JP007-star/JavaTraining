@@ -111,3 +111,133 @@ class MyCustomException extends Exception {
 In this example:
 - The `readFile` method reads a file and throws a `MyCustomException` if any issues occur.
 - The `main` method handles this custom exception and includes a `finally` block to demonstrate its execution regardless of exceptions.
+
+
+
+#### Day 2: Exception Hierarchy in Java
+
+1. **Exception Hierarchy**:
+   - **Throwable**: The superclass of all errors and exceptions in Java.
+      - **Error**: Indicates serious problems that a reasonable application should not try to catch (e.g., `OutOfMemoryError`).
+      - **Exception**: Indicates conditions that a reasonable application might want to catch.
+         - **Checked Exceptions**: Exceptions that are checked at compile-time (e.g., `IOException`, `SQLException`).
+         - **Unchecked Exceptions**: Exceptions that are not checked at compile-time (e.g., `RuntimeException`, `NullPointerException`).
+
+    ```java
+    import java.io.*;
+
+    public class Main {
+        public static void main(String[] args) {
+            try {
+                FileReader file = new FileReader("nonexistentfile.txt");
+            } catch (FileNotFoundException e) {
+                System.out.println("File not found exception caught.");
+            }
+        }
+    }
+    ```
+
+2. **Hierarchy Diagram**:
+    ```
+    Throwable
+    ├── Error
+    └── Exception
+        ├── RuntimeException
+        └── Other Exceptions (e.g., IOException, SQLException)
+    ```
+
+#### Day 3: Overview of Finally Block for Cleanup Operations
+
+1. **Finally Block**:
+   - A `finally` block is used to execute important code such as closing a resource, irrespective of whether an exception is handled or not.
+
+2. **Example**:
+    ```java
+    public class Main {
+        public static void main(String[] args) {
+            try {
+                int data = 50 / 0; // This will throw ArithmeticException
+            } catch (ArithmeticException e) {
+                System.out.println("Exception caught: " + e);
+            } finally {
+                System.out.println("Finally block is always executed.");
+            }
+        }
+    }
+    ```
+   - **Output**:
+     ```
+     Exception caught: java.lang.ArithmeticException: / by zero
+     Finally block is always executed.
+     ```
+
+#### Day 4: Throwing Exceptions Explicitly Using the Throw Keyword
+
+1. **Throw Keyword**:
+   - The `throw` keyword is used to explicitly throw an exception from a method or any block of code.
+
+2. **Example**:
+    ```java
+    public class Main {
+        static void validate(int age) {
+            if (age < 18)
+                throw new ArithmeticException("Not valid age");
+            else
+                System.out.println("Welcome to vote");
+        }
+
+        public static void main(String[] args) {
+            try {
+                validate(13);  // This will throw an exception
+            } catch (ArithmeticException e) {
+                System.out.println("Exception caught: " + e);
+            }
+            System.out.println("Rest of the code...");
+        }
+    }
+    ```
+   - **Output**:
+     ```
+     Exception caught: java.lang.ArithmeticException: Not valid age
+     Rest of the code...
+     ```
+
+#### Day 5: Exception Propagation: How Exceptions Propagate Up the Call Stack
+
+1. **Exception Propagation**:
+   - Exceptions can propagate up the call stack from the point where they occurred to the point where they are handled.
+
+2. **Example**:
+    ```java
+    public class Main {
+        void method1() {
+            int data = 50 / 0; // This will throw ArithmeticException
+        }
+
+        void method2() {
+            method1();
+        }
+
+        void method3() {
+            try {
+                method2();
+            } catch (ArithmeticException e) {
+                System.out.println("Exception handled in method3");
+            }
+        }
+
+        public static void main(String[] args) {
+            Main obj = new Main();
+            obj.method3();
+            System.out.println("Normal flow...");
+        }
+    }
+    ```
+   - **Output**:
+     ```
+     Exception handled in method3
+     Normal flow...
+     ```
+   - **Explanation**: The `ArithmeticException` thrown in `method1` propagates to `method2` and then to `method3`, where it is caught and handled.
+
+By understanding these concepts and examples, you will be able to grasp the fundamentals of abstract classes, interfaces, and exception handling in Java.
