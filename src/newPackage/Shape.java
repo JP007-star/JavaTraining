@@ -1,5 +1,7 @@
 package newPackage;
 
-public interface Shape {
-    void area();
+interface Shape {
+
+    // blueprint
+    void area(int length,int width);
 }

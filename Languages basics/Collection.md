@@ -116,6 +116,30 @@ Maps keys to values, with no duplicate keys allowed. Each key can map to at most
   linkedMap.put("user2", "Jane Doe");
   ```
 
+#### EnumMap
+Description: Specialized map implementation for use with enum type keys.
+Ordering: Maintains the natural order of the keys (the order in which enum constants are declared).
+Performance: Very efficient and compact.
+ ```java
+import java.util.EnumMap;
+import java.util.Map;
+
+public class EnumMapExample {
+enum Day {
+MONDAY, TUESDAY, WEDNESDAY
+}
+
+    public static void main(String[] args) {
+        Map<Day, String> map = new EnumMap<>(Day.class);
+        map.put(Day.MONDAY, "Work");
+        map.put(Day.TUESDAY, "Gym");
+
+        System.out.println(map.get(Day.MONDAY)); // Output: Work
+    }
+}
+ ```
+
+
 #### 3.7. **PriorityQueue**
 
 - **Use Case**: Task scheduling based on priority.
