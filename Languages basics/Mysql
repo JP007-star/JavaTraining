@@ -3,4 +3,34 @@ SELECT  column from table1 INNER JOIN table2 ON table1.column
 INSERT INTO orders( order_id, order_data,id ,amount) values (1001, '2021-10-01',4, 100), (1002, '2021-10-01',3, 1
 00), (1003, '2021-10-01',2, 100);
 
+
  create table orders( order_id INT PRIMARY KEY, order_data DATE, id INT, amount INT, Foreign KEY (id) references users(id));
+
+
+
+
+ CREATE TABLE friends ( friend_id INT PRIMARY KEY, name varchar(100), best_friend BOOLEAN);
+
+
+
+ INSERT INTO  friends ( friend_id ,name, best_friend) VALUES (1,'Alice' TRUE),(2,'Adam' False),(3,'David' TRUE);
+
+
+
+
+
+ CALL ShowBestFriends();
+
+
+
+
+ DELIMITER //
+
+ CREATE PROCEDURE ShowBestFriends()
+ BEGIN
+
+ SELECT  name  FROM friends where best_friend=TRUE;
+ END //
+
+
+ DELIMITER ;
